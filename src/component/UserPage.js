@@ -5,27 +5,29 @@ import {
   graphql
 } from 'react-relay'
 import environment from '../relay/Environment'
+import User from '../component/User';
 
-const UserQuery = graphql`
-  query UserQuery{
-    viewer {
-      login
-      name
+const UserPageQuery = graphql`
+query UserPageQuery{
+	relay{
+    user(login:"AshoneA"){
+      ...User_profile
     }
   }
+}
 `
-class User extends Component {
+class UserPage extends Component {
   render() {
     return (
       <QueryRenderer
         environment={environment}
-        query={UserQuery}
+        query={UserPageQuery}
         render={({ error, props }) => {
           if (error) {
             return <div>{error.message}</div>
           } else if (props) {
             console.log(props)
-            return <Button >123</Button>
+            return <User />
           }
           return <div>Loading</div>
         }}
@@ -34,4 +36,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default UserPage;

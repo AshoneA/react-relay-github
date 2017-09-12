@@ -1,0 +1,18 @@
+.main-layout .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.main-layout .trigger:hover {
+    color: #108ee9;
+}
+
+.main-layout .logo {
+    height: 32px;
+    background: #333;
+    border-radius: 6px;
+    margin: 16px;
+}
