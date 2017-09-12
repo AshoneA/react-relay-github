@@ -8,16 +8,17 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type User_profile = {|
-  +avatarUrl: any;
-  +createdAt: any;
-  +bio: ?string;
-  +name: ?string;
-  +login: string;
-  +location: ?string;
-  +repositories: {|
+export type ProjectProfile_repository = {|
+  +name: string;
+  +projectsUrl: any;
+  +description: ?string;
+  +id: string;
+  +primaryLanguage: ?{|
+    +id: string;
+    +name: string;
+  |};
+  +stargazers: {|
     +totalCount: number;
-    +nodes: ?$ReadOnlyArray<?{| |}>;
   |};
 |};
 */
@@ -27,29 +28,8 @@ const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "User_profile",
+  "name": "ProjectProfile_repository",
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "avatarUrl",
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "createdAt",
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "bio",
-      "storageKey": null
-    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -61,14 +41,46 @@ const fragment /*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "args": null,
-      "name": "login",
+      "name": "projectsUrl",
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
       "args": null,
-      "name": "location",
+      "name": "description",
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "id",
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "Language",
+      "name": "primaryLanguage",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "id",
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "name",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {
@@ -82,8 +94,8 @@ const fragment /*: ConcreteFragment*/ = {
           "type": "Int"
         }
       ],
-      "concreteType": "RepositoryConnection",
-      "name": "repositories",
+      "concreteType": "StargazerConnection",
+      "name": "stargazers",
       "plural": false,
       "selections": [
         {
@@ -92,28 +104,12 @@ const fragment /*: ConcreteFragment*/ = {
           "args": null,
           "name": "totalCount",
           "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "Repository",
-          "name": "nodes",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "FragmentSpread",
-              "name": "ProjectProfile_repository",
-              "args": null
-            }
-          ],
-          "storageKey": null
         }
       ],
-      "storageKey": "repositories{\"first\":10}"
+      "storageKey": "stargazers{\"first\":10}"
     }
   ],
-  "type": "User"
+  "type": "Repository"
 };
 
 module.exports = fragment;

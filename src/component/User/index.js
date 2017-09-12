@@ -1,3 +1,4 @@
-import User from './User';
+import UserPage from './UserPage';
+import './index.css';
 
-export default User;
+export default UserPage;

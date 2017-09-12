@@ -20,6 +20,9 @@ export type Commit_commit = {|
     +date: ?any;
     +name: ?string;
     +email: ?string;
+    +user: ?{|
+      +url: any;
+    |};
   |};
 |};
 */
@@ -107,6 +110,24 @@ const fragment /*: ConcreteFragment*/ = {
           "alias": null,
           "args": null,
           "name": "email",
+          "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "args": null,
+          "concreteType": "User",
+          "name": "user",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "url",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],

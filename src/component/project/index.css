@@ -1,0 +1,12 @@
+.project-commit {
+    display: flex;
+}
+
+.project-commit .author {
+    width: 100px;
+    text-align: center;
+}
+
+.project-commit .content {
+    flex: 1;
+}

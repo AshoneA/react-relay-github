@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e8744194f35518b4598d8d817b36eadc
+ * @relayHash b5e86f2c095e4ef25c62092543810199
  */
 
 /* eslint-disable */
@@ -23,8 +23,9 @@ export type CommitListForwardQueryResponse = {|
 query CommitListForwardQuery(
   $count: Int!
   $after: String
+  $name: String!
 ) {
-  repository(owner: "facebook", name: "react") {
+  repository(owner: "facebook", name: $name) {
     ref(qualifiedName: "master") {
       target {
         __typename
@@ -77,6 +78,10 @@ fragment Commit_commit on Commit {
     date
     name
     email
+    user {
+      url
+      id
+    }
   }
 }
 */
@@ -95,6 +100,12 @@ const batch /*: ConcreteBatch*/ = {
         "name": "after",
         "type": "String",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "name",
+        "type": "String!",
+        "defaultValue": null
       }
     ],
     "kind": "Fragment",
@@ -106,9 +117,9 @@ const batch /*: ConcreteBatch*/ = {
         "alias": null,
         "args": [
           {
-            "kind": "Literal",
+            "kind": "Variable",
             "name": "name",
-            "value": "react",
+            "variableName": "name",
             "type": "String!"
           },
           {
@@ -157,7 +168,7 @@ const batch /*: ConcreteBatch*/ = {
             "storageKey": "ref{\"qualifiedName\":\"master\"}"
           }
         ],
-        "storageKey": "repository{\"name\":\"react\",\"owner\":\"facebook\"}"
+        "storageKey": null
       }
     ],
     "type": "Query"
@@ -179,6 +190,12 @@ const batch /*: ConcreteBatch*/ = {
         "name": "after",
         "type": "String",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "name",
+        "type": "String!",
+        "defaultValue": null
       }
     ],
     "kind": "Root",
@@ -190,9 +207,9 @@ const batch /*: ConcreteBatch*/ = {
         "alias": null,
         "args": [
           {
-            "kind": "Literal",
+            "kind": "Variable",
             "name": "name",
-            "value": "react",
+            "variableName": "name",
             "type": "String!"
           },
           {
@@ -361,6 +378,31 @@ const batch /*: ConcreteBatch*/ = {
                                         "args": null,
                                         "name": "email",
                                         "storageKey": null
+                                      },
+                                      {
+                                        "kind": "LinkedField",
+                                        "alias": null,
+                                        "args": null,
+                                        "concreteType": "User",
+                                        "name": "user",
+                                        "plural": false,
+                                        "selections": [
+                                          {
+                                            "kind": "ScalarField",
+                                            "alias": null,
+                                            "args": null,
+                                            "name": "url",
+                                            "storageKey": null
+                                          },
+                                          {
+                                            "kind": "ScalarField",
+                                            "alias": null,
+                                            "args": null,
+                                            "name": "id",
+                                            "storageKey": null
+                                          }
+                                        ],
+                                        "storageKey": null
                                       }
                                     ],
                                     "storageKey": null
@@ -486,11 +528,11 @@ const batch /*: ConcreteBatch*/ = {
             "storageKey": null
           }
         ],
-        "storageKey": "repository{\"name\":\"react\",\"owner\":\"facebook\"}"
+        "storageKey": null
       }
     ]
   },
-  "text": "query CommitListForwardQuery(\n  $count: Int!\n  $after: String\n) {\n  repository(owner: \"facebook\", name: \"react\") {\n    ref(qualifiedName: \"master\") {\n      target {\n        __typename\n        ...CommitList_commits\n        id\n      }\n      id\n    }\n    id\n  }\n}\n\nfragment CommitList_commits on Commit {\n  history(first: $count, after: $after) {\n    edges {\n      node {\n        ...Commit_commit\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    ... on CommitHistoryConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment Commit_commit on Commit {\n  committedDate\n  message\n  messageBody\n  messageBodyHTML\n  messageHeadline\n  id\n  author {\n    avatarUrl\n    date\n    name\n    email\n  }\n}\n"
+  "text": "query CommitListForwardQuery(\n  $count: Int!\n  $after: String\n  $name: String!\n) {\n  repository(owner: \"facebook\", name: $name) {\n    ref(qualifiedName: \"master\") {\n      target {\n        __typename\n        ...CommitList_commits\n        id\n      }\n      id\n    }\n    id\n  }\n}\n\nfragment CommitList_commits on Commit {\n  history(first: $count, after: $after) {\n    edges {\n      node {\n        ...Commit_commit\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    ... on CommitHistoryConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment Commit_commit on Commit {\n  committedDate\n  message\n  messageBody\n  messageBodyHTML\n  messageHeadline\n  id\n  author {\n    avatarUrl\n    date\n    name\n    email\n    user {\n      url\n      id\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

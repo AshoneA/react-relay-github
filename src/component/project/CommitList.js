@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button, Timeline, Icon } from 'antd';
 import {
   createPaginationContainer,
   graphql
@@ -10,12 +10,21 @@ class CommitList extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.commits.history.edges.map(({ node }) => (
-            <Commit commit={node} key={node.__id} />
-          ))
-        }
-        <Button onClick={this._loadMore}>next page</Button>
+        <Timeline>
+          {
+            this.props.commits.history.edges.map(({ node }) => (
+              <Timeline.Item key={node.__id}>
+                <Commit commit={node} />
+              </Timeline.Item>
+            ))
+          }
+        </Timeline>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button onClick={this._loadMore} type="primary">
+            load more
+            <Icon type="caret-down" />
+          </Button>
+        </div>
       </div>
     )
   }
@@ -57,8 +66,8 @@ export default createPaginationContainer(CommitList,
   {
     direction: 'forward',
     query: graphql`
-      query CommitListForwardQuery($count: Int!, $after: String) {
-        repository(owner: "facebook", name: "react") {
+      query CommitListForwardQuery($count: Int!, $after: String, $name: String!) {
+        repository(owner: "facebook", name: $name) {
           ref(qualifiedName: "master") {
             target {
               ...CommitList_commits
@@ -83,6 +92,7 @@ export default createPaginationContainer(CommitList,
       return {
         count,
         after: cursor,
+        name: props.name
       };
     },
 

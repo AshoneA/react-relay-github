@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Tabs } from 'antd';
 import {
   QueryRenderer,
   graphql
 } from 'react-relay'
-import environment from '../relay/Environment'
-import User from '../component/User';
+import environment from '../../relay/Environment'
+import User from './User';
 
+const { TabPane } = Tabs;
 const UserPageQuery = graphql`
 query UserPageQuery{
-	relay{
-    user(login:"AshoneA"){
-      ...User_profile
-    }
+  user(login:"AshoneA"){
+    ...User_profile
   }
 }
 `
@@ -26,8 +25,9 @@ class UserPage extends Component {
           if (error) {
             return <div>{error.message}</div>
           } else if (props) {
-            console.log(props)
-            return <User />
+            return (
+              <User profile={props.user} />
+            )
           }
           return <div>Loading</div>
         }}

@@ -10,8 +10,9 @@ const CommitListPageQuery = graphql`
   query CommitListPageQuery(
     $count: Int!
     $after: String
+    $name: String!
   ) {
-    repository(owner:"facebook",name:"react"){
+    repository(owner:"facebook",name:$name){
       ref(qualifiedName:"master"){
         target{
           ...CommitList_commits
@@ -22,19 +23,23 @@ const CommitListPageQuery = graphql`
 `
 
 class CommitListPage extends Component {
+  state = {
+    name: 'react'
+  }
   render() {
     return (
       <QueryRenderer
         environment={environment}
         query={CommitListPageQuery}
         variables={{
-          count: 10
+          count: 10,
+          name: this.state.name
         }}
         render={({ error, props }) => {
           if (error) {
             return <div>{error.message}</div>
           } else if (props) {
-            return <CommitList commits={props.repository.ref.target} />
+            return <CommitList commits={props.repository.ref.target} name={this.state.name} />
           }
           return <div>loading</div>
         }}

@@ -1,0 +1,24 @@
+.user .profile {
+    display: flex;
+}
+
+.user .profile .own-repositories {
+    flex: 1;
+}
+
+.user .profile .user-info {
+    width: 160px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid rgba(99, 97, 97, 0.08);
+    border-radius: 20px;
+}
+
+.user .profile .user-info:hover {
+    box-shadow: 1px 1px 4px #888888;
+}
+
+.user .profile .user-info img {
+    width: 100%;
+    border-radius: 20px;
+}
