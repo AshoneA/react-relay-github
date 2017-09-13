@@ -1,0 +1,20 @@
+.issue-issue {
+    height: 70px;
+}
+
+.issue-issue .avatar {
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.issue-issue .avatar img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.issue-issue .profile {
+    margin-left: 80px;
+}

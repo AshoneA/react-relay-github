@@ -7,6 +7,10 @@ import {
 import Commit from './Commit';
 
 class CommitList extends Component {
+
+  state = {
+    isloading: false
+  }
   render() {
     return (
       <div>
@@ -20,7 +24,11 @@ class CommitList extends Component {
           }
         </Timeline>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button onClick={this._loadMore} type="primary">
+          <Button
+            loading={this.state.isloading}
+            onClick={this._loadMore}
+            type="primary"
+          >
             load more
             <Icon type="caret-down" />
           </Button>
@@ -32,10 +40,11 @@ class CommitList extends Component {
     if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
       return;
     }
-
+    this.setState({ isloading: true });
     this.props.relay.loadMore(
       10, // Fetch the next 10 feed items
       e => {
+        this.setState({ isloading: false });
         console.log(e);
       },
     );
@@ -76,17 +85,17 @@ export default createPaginationContainer(CommitList,
         }
       }
     `,
-    getConnectionFromProps(props) {
-      console.log(arguments);
-      return props.commits && props.commits.history;
-    },
-    getFragmentVariables(prevVars, totalCount) {
-      console.log(arguments)
-      return {
-        ...prevVars,
-        count: totalCount,
-      };
-    },
+    // getConnectionFromProps(props) {
+    //   console.log(arguments);
+    //   return props.commits && props.commits.history;
+    // },
+    // getFragmentVariables(prevVars, totalCount) {
+    //   console.log(arguments)
+    //   return {
+    //     ...prevVars,
+    //     count: totalCount,
+    //   };
+    // },
     getVariables(props, { count, cursor }, fragmentVariables) {
       console.log(arguments)
       return {
