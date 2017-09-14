@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Timeline, Icon } from 'antd';
+import { Button, Timeline } from 'antd';
 import {
   createPaginationContainer,
   graphql
@@ -9,7 +9,8 @@ import Commit from './Commit';
 class CommitList extends Component {
 
   state = {
-    isloading: false
+    isloading: false,
+    text: 'load more',
   }
   render() {
     return (
@@ -29,23 +30,24 @@ class CommitList extends Component {
             onClick={this._loadMore}
             type="primary"
           >
-            load more
-            <Icon type="caret-down" />
+            {this.state.text}
           </Button>
         </div>
       </div>
     )
   }
   _loadMore = () => {
+    this.setState({ text: 'loading...' });
     if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
+      this.setState({ text: 'no more' });
       return;
     }
     this.setState({ isloading: true });
     this.props.relay.loadMore(
       10, // Fetch the next 10 feed items
       e => {
+        this.setState({ text: 'load more' });
         this.setState({ isloading: false });
-        console.log(e);
       },
     );
   }

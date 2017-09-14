@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fe486cc739d8cb1b047e840dad015731
+ * @relayHash 605fe94d6bc51aba19c340be87fc64c5
  */
 
 /* eslint-disable */
@@ -21,15 +21,6 @@ export type CreateCommentMutationResponse = {|
   +addComment: ?{|
     +commentEdge: {|
       +cursor: string;
-      +node: ?{|
-        +bodyHTML: any;
-        +createdAt: any;
-        +author: ?{|
-          +avatarUrl: any;
-          +login: string;
-          +url: any;
-        |};
-      |};
     |};
   |};
 |};
@@ -43,20 +34,6 @@ mutation CreateCommentMutation(
   addComment(input: $input) {
     commentEdge {
       cursor
-      node {
-        bodyHTML
-        createdAt
-        author {
-          __typename
-          avatarUrl
-          login
-          url
-          ... on Node {
-            id
-          }
-        }
-        id
-      }
     }
   }
 }
@@ -104,63 +81,6 @@ const batch /*: ConcreteBatch*/ = {
                 "alias": null,
                 "args": null,
                 "name": "cursor",
-                "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "IssueComment",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "bodyHTML",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "createdAt",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "args": null,
-                    "concreteType": null,
-                    "name": "author",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "avatarUrl",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "login",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "url",
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
                 "storageKey": null
               }
             ],
@@ -218,84 +138,6 @@ const batch /*: ConcreteBatch*/ = {
                 "args": null,
                 "name": "cursor",
                 "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "IssueComment",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "bodyHTML",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "createdAt",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "args": null,
-                    "concreteType": null,
-                    "name": "author",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "__typename",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "avatarUrl",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "login",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "url",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "id",
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
               }
             ],
             "storageKey": null
@@ -305,7 +147,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation CreateCommentMutation(\n  $input: AddCommentInput!\n) {\n  addComment(input: $input) {\n    commentEdge {\n      cursor\n      node {\n        bodyHTML\n        createdAt\n        author {\n          __typename\n          avatarUrl\n          login\n          url\n          ... on Node {\n            id\n          }\n        }\n        id\n      }\n    }\n  }\n}\n"
+  "text": "mutation CreateCommentMutation(\n  $input: AddCommentInput!\n) {\n  addComment(input: $input) {\n    commentEdge {\n      cursor\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

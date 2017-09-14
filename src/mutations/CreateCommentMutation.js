@@ -9,15 +9,6 @@ const mutation = graphql`
     addComment(input: $input) {
       commentEdge {
         cursor
-        node {
-          bodyHTML
-          createdAt
-          author {
-            avatarUrl
-            login
-            url
-          }
-        }
       }
     }
   }

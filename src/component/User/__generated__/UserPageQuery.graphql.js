@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0a74aeef573e01c8d292e6f59337f2c8
+ * @relayHash fe8525069623491662df5814e829d041
  */
 
 /* eslint-disable */
@@ -37,18 +37,37 @@ fragment User_profile on User {
       id
     }
   }
+  starredRepositories(first: 10) {
+    totalCount
+    nodes {
+      ...ProjectProfile_repository
+      id
+    }
+  }
+  watching(first: 10) {
+    totalCount
+    nodes {
+      ...ProjectProfile_repository
+      id
+    }
+  }
 }
 
 fragment ProjectProfile_repository on Repository {
   name
-  projectsUrl
   description
+  url
   id
+  updatedAt
   primaryLanguage {
     id
     name
+    color
   }
   stargazers(first: 10) {
+    totalCount
+  }
+  forks(first: 10) {
     totalCount
   }
 }
@@ -206,14 +225,21 @@ const batch /*: ConcreteBatch*/ = {
                         "kind": "ScalarField",
                         "alias": null,
                         "args": null,
-                        "name": "projectsUrl",
+                        "name": "description",
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
                         "args": null,
-                        "name": "description",
+                        "name": "url",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "updatedAt",
                         "storageKey": null
                       },
                       {
@@ -236,6 +262,13 @@ const batch /*: ConcreteBatch*/ = {
                             "alias": null,
                             "args": null,
                             "name": "name",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "color",
                             "storageKey": null
                           }
                         ],
@@ -265,6 +298,31 @@ const batch /*: ConcreteBatch*/ = {
                           }
                         ],
                         "storageKey": "stargazers{\"first\":10}"
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": [
+                          {
+                            "kind": "Literal",
+                            "name": "first",
+                            "value": 10,
+                            "type": "Int"
+                          }
+                        ],
+                        "concreteType": "RepositoryConnection",
+                        "name": "forks",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "totalCount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": "forks{\"first\":10}"
                       }
                     ]
                   }
@@ -273,6 +331,324 @@ const batch /*: ConcreteBatch*/ = {
               }
             ],
             "storageKey": "repositories{\"first\":10}"
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 10,
+                "type": "Int"
+              }
+            ],
+            "concreteType": "StarredRepositoryConnection",
+            "name": "starredRepositories",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "totalCount",
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "Repository",
+                "name": "nodes",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "type": "Repository",
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "description",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "url",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "updatedAt",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Language",
+                        "name": "primaryLanguage",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "id",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "name",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "color",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": [
+                          {
+                            "kind": "Literal",
+                            "name": "first",
+                            "value": 10,
+                            "type": "Int"
+                          }
+                        ],
+                        "concreteType": "StargazerConnection",
+                        "name": "stargazers",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "totalCount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": "stargazers{\"first\":10}"
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": [
+                          {
+                            "kind": "Literal",
+                            "name": "first",
+                            "value": 10,
+                            "type": "Int"
+                          }
+                        ],
+                        "concreteType": "RepositoryConnection",
+                        "name": "forks",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "totalCount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": "forks{\"first\":10}"
+                      }
+                    ]
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": "starredRepositories{\"first\":10}"
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 10,
+                "type": "Int"
+              }
+            ],
+            "concreteType": "RepositoryConnection",
+            "name": "watching",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "totalCount",
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "Repository",
+                "name": "nodes",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "type": "Repository",
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "description",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "url",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "updatedAt",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Language",
+                        "name": "primaryLanguage",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "id",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "name",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "color",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": [
+                          {
+                            "kind": "Literal",
+                            "name": "first",
+                            "value": 10,
+                            "type": "Int"
+                          }
+                        ],
+                        "concreteType": "StargazerConnection",
+                        "name": "stargazers",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "totalCount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": "stargazers{\"first\":10}"
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": [
+                          {
+                            "kind": "Literal",
+                            "name": "first",
+                            "value": 10,
+                            "type": "Int"
+                          }
+                        ],
+                        "concreteType": "RepositoryConnection",
+                        "name": "forks",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "totalCount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": "forks{\"first\":10}"
+                      }
+                    ]
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": "watching{\"first\":10}"
           },
           {
             "kind": "ScalarField",
@@ -286,7 +662,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query UserPageQuery {\n  user(login: \"AshoneA\") {\n    ...User_profile\n    id\n  }\n}\n\nfragment User_profile on User {\n  avatarUrl\n  createdAt\n  bio\n  name\n  login\n  location\n  repositories(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n}\n\nfragment ProjectProfile_repository on Repository {\n  name\n  projectsUrl\n  description\n  id\n  primaryLanguage {\n    id\n    name\n  }\n  stargazers(first: 10) {\n    totalCount\n  }\n}\n"
+  "text": "query UserPageQuery {\n  user(login: \"AshoneA\") {\n    ...User_profile\n    id\n  }\n}\n\nfragment User_profile on User {\n  avatarUrl\n  createdAt\n  bio\n  name\n  login\n  location\n  repositories(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n  starredRepositories(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n  watching(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n}\n\nfragment ProjectProfile_repository on Repository {\n  name\n  description\n  url\n  id\n  updatedAt\n  primaryLanguage {\n    id\n    name\n    color\n  }\n  stargazers(first: 10) {\n    totalCount\n  }\n  forks(first: 10) {\n    totalCount\n  }\n}\n"
 };
 
 module.exports = batch;

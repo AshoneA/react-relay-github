@@ -18,7 +18,7 @@ class Issue extends Component {
           </a>
         </div>
         <div className="profile">
-          <h2><Link to={`issues/${issue.number}`}>{issue.title}</Link></h2>
+          <h2><Link to={`/issues/${issue.number}`}>{issue.title}</Link></h2>
           <p>
             #{issue.number}
             {moment().to(moment(issue.updatedAt))} by {issue.author.login}

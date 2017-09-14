@@ -4,6 +4,10 @@ import UserPage from './component/User';
 import IssueListPage, {
   IssueDetailPage
 } from './component/issue';
+import Chart, {
+  PRChartPage,
+  UserRepoPage
+} from './component/chart';
 
 const routes = {
   path: '/',
@@ -13,6 +17,10 @@ const routes = {
     { path: 'user', component: UserPage },
     { path: 'issues', component: IssueListPage },
     { path: 'issues/:number', component: IssueDetailPage },
+    { path: 'chart/primary/:user', component: Chart },
+    { path: 'chart/repo/:user', component: UserRepoPage },
+    { path: 'chart/:owner/:name', component: PRChartPage },
+
   ]
 }
 

@@ -18,3 +18,51 @@
 .issue-issue .profile {
     margin-left: 80px;
 }
+
+.issue-detail .header {
+    display: flex;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e8e3e3;
+}
+
+.issue-detail .header .title {
+    flex: 1;
+}
+
+.issue-detail .header .avatar {
+    width: 74px;
+}
+
+.issue-detail .header .avatar img {
+    width: 100%;
+    border-radius: 16px;
+    height: 100%;
+}
+
+.issue-detail .body {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.issue-detail .publish {
+    margin-top: 20px;
+}
+
+.issue-issue-comment {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(115, 114, 114, 0.35);
+}
+
+.issue-issue-comment .avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.issue-issue-comment .avatar img {
+    width: 100%;
+}
+
+.issue-issue-comment .content {
+    margin-left: 30px;
+}

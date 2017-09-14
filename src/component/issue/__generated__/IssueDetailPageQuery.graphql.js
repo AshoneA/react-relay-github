@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash aa21739fb11faec29adbca81623d1906
+ * @relayHash 0d83687ad53a2027f1eedd6882a08d8f
  */
 
 /* eslint-disable */
@@ -55,6 +55,7 @@ fragment IssueDetail_issue on Repository {
 fragment IssueComment_comment on IssueComment {
   id
   bodyHTML
+  databaseId
   createdAt
   author {
     __typename
@@ -297,6 +298,13 @@ const batch /*: ConcreteBatch*/ = {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
+                            "name": "databaseId",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
                             "name": "createdAt",
                             "storageKey": null
                           },
@@ -370,7 +378,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query IssueDetailPageQuery(\n  $number: Int!\n) {\n  repository(owner: \"AshoneA\", name: \"react-relay-github\") {\n    ...IssueDetail_issue\n    id\n  }\n}\n\nfragment IssueDetail_issue on Repository {\n  issue(number: $number) {\n    id\n    createdAt\n    bodyHTML\n    number\n    title\n    author {\n      __typename\n      avatarUrl\n      login\n      ... on Node {\n        id\n      }\n    }\n    comments(first: 100) {\n      totalCount\n      edges {\n        node {\n          ...IssueComment_comment\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment IssueComment_comment on IssueComment {\n  id\n  bodyHTML\n  createdAt\n  author {\n    __typename\n    avatarUrl\n    login\n    url\n    ... on Node {\n      id\n    }\n  }\n}\n"
+  "text": "query IssueDetailPageQuery(\n  $number: Int!\n) {\n  repository(owner: \"AshoneA\", name: \"react-relay-github\") {\n    ...IssueDetail_issue\n    id\n  }\n}\n\nfragment IssueDetail_issue on Repository {\n  issue(number: $number) {\n    id\n    createdAt\n    bodyHTML\n    number\n    title\n    author {\n      __typename\n      avatarUrl\n      login\n      ... on Node {\n        id\n      }\n    }\n    comments(first: 100) {\n      totalCount\n      edges {\n        node {\n          ...IssueComment_comment\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment IssueComment_comment on IssueComment {\n  id\n  bodyHTML\n  databaseId\n  createdAt\n  author {\n    __typename\n    avatarUrl\n    login\n    url\n    ... on Node {\n      id\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

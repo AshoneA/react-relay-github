@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import { browserHistory } from 'react-router';
 import './MainLayout.css';
 
 const { Header, Sider, Content } = Layout;
@@ -22,18 +23,26 @@ class MainLayout extends Component {
           collapsed={this.state.collapsed}
         >
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
+          <Menu
+            onSelect={({ item, key }) => browserHistory.push(key)}
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={['1']}>
+            <Menu.Item key="/user" >
               <Icon type="user" />
-              <span>nav 1</span>
+              <span>profile</span>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="/commit">
               <Icon type="video-camera" />
-              <span>nav 2</span>
+              <span>commit history</span>
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item key="/issues">
               <Icon type="upload" />
-              <span>nav 3</span>
+              <span>issues</span>
+            </Menu.Item>
+            <Menu.Item key="/chart/primary/AshoneA">
+              <Icon type="upload" />
+              <span>charts</span>
             </Menu.Item>
           </Menu>
         </Sider>

@@ -9,18 +9,21 @@ import Issue from './Issue';
 class IssueList extends Component {
 
   state = {
-    isloading: false
+    isloading: false,
+    text: 'load more',
   }
 
   _loadmore = () => {
+    this.setState({ text: 'loading...' });
     if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
+      this.setState({ text: 'no more' });
       return;
     }
     this.setState({ isloading: true });
     this.props.relay.loadMore(
       10, // Fetch the next 10 feed items
       e => {
-        this.setState({ isloading: false });
+        this.setState({ isloading: false, text: 'load more' });
         console.log(e);
       },
     );
@@ -35,7 +38,8 @@ class IssueList extends Component {
             <Issue key={node.__id} issue={node} />
           ))
         }
-        <Button onClick={this._loadmore}>load more</Button>
+        <Button onClick={this._loadmore} loading={this.state.isloading}>
+          {this.state.text}</Button>
       </div>
     )
   }

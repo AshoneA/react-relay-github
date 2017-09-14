@@ -12,20 +12,26 @@ const { TextArea } = Input;
 class IssueDetail extends Component {
   state = {
     content: '',
+    publishing: false,
   }
 
   _createComment = () => {
+    this.setState({ publishing: true });
     CreateCommenttMutation(this.props.issue.issue.id, this.state.content,
       () => {
-        this.props.relay.refetch(refetchVariables => refetchVariables, null);
-        this.setState({ content: '' });
+        this.refetch();
+        this.setState({ content: '', publishing: false });
       })
+  }
+
+  refetch = () => {
+    this.props.relay.refetch(refetchVariables => refetchVariables, null);
   }
 
   render() {
     const { issue } = this.props.issue;
     return (
-      <div>
+      <div className="issue-detail">
         <div className="header">
           <div className="title">
             <h1>{issue.title} #{issue.number}</h1>
@@ -43,7 +49,7 @@ class IssueDetail extends Component {
         <div className="comments">
           {
             issue.comments.edges.map(({ node }) => (
-              <IssueComment key={node.__id} comment={node} />
+              <IssueComment key={node.__id} comment={node} refetch={this.refetch} />
             ))
           }
         </div>
@@ -53,7 +59,10 @@ class IssueDetail extends Component {
             rows={8}
             onChange={e => this.setState({ content: e.target.value })}
           />
-          <Button type="primary" onClick={this._createComment}>Comment</Button>
+          <Button
+            disabled={this.state.publishing}
+            style={{ float: 'right', margin: 10 }}
+            type="primary" onClick={this._createComment}>Comment</Button>
         </div>
       </div>
     )
