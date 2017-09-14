@@ -7,6 +7,7 @@ import {
 import { Input, Button } from 'antd';
 import IssueComment from './IssueComment';
 import CreateCommenttMutation from '../../mutations/CreateCommentMutation';
+import { cache } from '../../relay/Environment';
 
 const { TextArea } = Input;
 class IssueDetail extends Component {
@@ -17,6 +18,7 @@ class IssueDetail extends Component {
 
   _createComment = () => {
     this.setState({ publishing: true });
+    cache.clear();
     CreateCommenttMutation(this.props.issue.issue.id, this.state.content,
       () => {
         this.refetch();

@@ -36,7 +36,7 @@ class PRChart extends Component {
     return (
       <div>
         <ReactEcharts
-          style={{ height: 800 }}
+          style={{ height: 600 }}
           option={this.state.option}
           onEvents={{
             click: (e) => {

@@ -5,18 +5,14 @@ import {
 } from 'react-relay';
 import { Icon, Button, Popconfirm, message } from 'antd';
 import moment from 'moment';
+import { removeIssue } from '../../gitapi';
+import { cache } from '../../relay/Environment';
 
 class IssueComment extends Component {
 
   _remove = (databaseId) => {
-    fetch(`https://api.github.com/repos/AshoneA/react-relay-github/issues/comments/${databaseId}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'bearer c8ebc092f5c9795335177a453c242b458d97df13'
-      }
-    }).then(() => {
+    cache.clear();
+    removeIssue(databaseId).then(() => {
       message.success('delete success!');
       this.props.refetch();
     })

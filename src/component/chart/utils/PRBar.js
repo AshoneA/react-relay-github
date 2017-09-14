@@ -30,12 +30,12 @@ export default function PRBar(data) {
       containLabel: true
     },
     xAxis: {
-      type: 'value',
-      boundaryGap: [0, 0.01]
-    },
-    yAxis: {
       type: 'category',
       data: yAxisData,
+    },
+    yAxis: {
+      type: 'value',
+      boundaryGap: [0, 0.01]
     },
     series: [
       {
