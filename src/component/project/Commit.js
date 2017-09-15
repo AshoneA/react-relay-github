@@ -11,7 +11,7 @@ class Commit extends Component {
     return (
       <div className="project-commit">
         <div className="author">
-          <a href={commit.author.user.url}>
+          <a>
             <img
               style={{ width: 70, height: 70 }}
               src={commit.author.avatarUrl}
@@ -20,13 +20,11 @@ class Commit extends Component {
           </a>
         </div>
         <div className="content">
-          <h3>{commit.messageHeadline}</h3>
+          <a href={commit.commitUrl}><h3>{commit.messageHeadline}</h3></a>
           {commit.messageBodyHTML}
           <p>{moment(commit.committedDate).format('YYYY/MM/DD/ HH:mm')}</p>
-          {/* <p>id:{this.props.commit.id}</p> */}
-          {/* <p>time:{commit.committedDate}</p> */}
         </div>
-      </div>
+      </div >
     )
   }
 }
@@ -38,6 +36,7 @@ export default createFragmentContainer(Commit, graphql`
     messageBody
     messageBodyHTML
     messageHeadline
+    commitUrl
     id
     author{
       avatarUrl

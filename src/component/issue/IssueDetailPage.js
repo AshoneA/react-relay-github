@@ -3,6 +3,7 @@ import {
   QueryRenderer,
   graphql
 } from 'react-relay';
+import { Spin } from 'antd';
 import environment from '../../relay/Environment';
 import IssueDetail from './IssueDetail';
 
@@ -31,7 +32,9 @@ class IssueDetailPage extends Component {
           } else if (props) {
             return <IssueDetail issue={props.repository} />
           }
-          return <div>loading</div>
+          return <div style={{ display: 'flex', justifyContent: 'center' }}
+          ><Spin />
+          </div>
         }}
       />
     )

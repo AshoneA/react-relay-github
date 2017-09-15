@@ -44,7 +44,7 @@ class CommitList extends Component {
     }
     this.setState({ isloading: true });
     this.props.relay.loadMore(
-      10, // Fetch the next 10 feed items
+      10,
       e => {
         this.setState({ text: 'load more' });
         this.setState({ isloading: false });
@@ -77,8 +77,8 @@ export default createPaginationContainer(CommitList,
   {
     direction: 'forward',
     query: graphql`
-      query CommitListForwardQuery($count: Int!, $after: String, $name: String!) {
-        repository(owner: "facebook", name: $name) {
+      query CommitListForwardQuery($count: Int!, $after: String, $name: String!,$owner: String!) {
+        repository(owner: $owner, name: $name) {
           ref(qualifiedName: "master") {
             target {
               ...CommitList_commits
@@ -87,23 +87,12 @@ export default createPaginationContainer(CommitList,
         }
       }
     `,
-    // getConnectionFromProps(props) {
-    //   console.log(arguments);
-    //   return props.commits && props.commits.history;
-    // },
-    // getFragmentVariables(prevVars, totalCount) {
-    //   console.log(arguments)
-    //   return {
-    //     ...prevVars,
-    //     count: totalCount,
-    //   };
-    // },
-    getVariables(props, { count, cursor }, fragmentVariables) {
-      console.log(arguments)
+    getVariables({ name, owner }, { count, cursor }, fragmentVariables) {
       return {
         count,
         after: cursor,
-        name: props.name
+        name,
+        owner,
       };
     },
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fe8525069623491662df5814e829d041
+ * @relayHash 277e19726c53df169defd630cf9c1455
  */
 
 /* eslint-disable */
@@ -30,21 +30,21 @@ fragment User_profile on User {
   name
   login
   location
-  repositories(first: 10) {
+  repositories(last: 10) {
     totalCount
     nodes {
       ...ProjectProfile_repository
       id
     }
   }
-  starredRepositories(first: 10) {
+  starredRepositories(last: 10) {
     totalCount
     nodes {
       ...ProjectProfile_repository
       id
     }
   }
-  watching(first: 10) {
+  watching(last: 10) {
     totalCount
     nodes {
       ...ProjectProfile_repository
@@ -59,6 +59,11 @@ fragment ProjectProfile_repository on Repository {
   url
   id
   updatedAt
+  owner {
+    __typename
+    login
+    id
+  }
   primaryLanguage {
     id
     name
@@ -179,7 +184,7 @@ const batch /*: ConcreteBatch*/ = {
             "args": [
               {
                 "kind": "Literal",
-                "name": "first",
+                "name": "last",
                 "value": 10,
                 "type": "Int"
               }
@@ -246,6 +251,38 @@ const batch /*: ConcreteBatch*/ = {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
+                        "concreteType": null,
+                        "name": "owner",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "__typename",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "login",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "id",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
                         "concreteType": "Language",
                         "name": "primaryLanguage",
                         "plural": false,
@@ -330,7 +367,7 @@ const batch /*: ConcreteBatch*/ = {
                 "storageKey": null
               }
             ],
-            "storageKey": "repositories{\"first\":10}"
+            "storageKey": "repositories{\"last\":10}"
           },
           {
             "kind": "LinkedField",
@@ -338,7 +375,7 @@ const batch /*: ConcreteBatch*/ = {
             "args": [
               {
                 "kind": "Literal",
-                "name": "first",
+                "name": "last",
                 "value": 10,
                 "type": "Int"
               }
@@ -405,6 +442,38 @@ const batch /*: ConcreteBatch*/ = {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
+                        "concreteType": null,
+                        "name": "owner",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "__typename",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "login",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "id",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
                         "concreteType": "Language",
                         "name": "primaryLanguage",
                         "plural": false,
@@ -489,7 +558,7 @@ const batch /*: ConcreteBatch*/ = {
                 "storageKey": null
               }
             ],
-            "storageKey": "starredRepositories{\"first\":10}"
+            "storageKey": "starredRepositories{\"last\":10}"
           },
           {
             "kind": "LinkedField",
@@ -497,7 +566,7 @@ const batch /*: ConcreteBatch*/ = {
             "args": [
               {
                 "kind": "Literal",
-                "name": "first",
+                "name": "last",
                 "value": 10,
                 "type": "Int"
               }
@@ -564,6 +633,38 @@ const batch /*: ConcreteBatch*/ = {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
+                        "concreteType": null,
+                        "name": "owner",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "__typename",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "login",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "id",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
                         "concreteType": "Language",
                         "name": "primaryLanguage",
                         "plural": false,
@@ -648,7 +749,7 @@ const batch /*: ConcreteBatch*/ = {
                 "storageKey": null
               }
             ],
-            "storageKey": "watching{\"first\":10}"
+            "storageKey": "watching{\"last\":10}"
           },
           {
             "kind": "ScalarField",
@@ -662,7 +763,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query UserPageQuery {\n  user(login: \"AshoneA\") {\n    ...User_profile\n    id\n  }\n}\n\nfragment User_profile on User {\n  avatarUrl\n  createdAt\n  bio\n  name\n  login\n  location\n  repositories(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n  starredRepositories(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n  watching(first: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n}\n\nfragment ProjectProfile_repository on Repository {\n  name\n  description\n  url\n  id\n  updatedAt\n  primaryLanguage {\n    id\n    name\n    color\n  }\n  stargazers(first: 10) {\n    totalCount\n  }\n  forks(first: 10) {\n    totalCount\n  }\n}\n"
+  "text": "query UserPageQuery {\n  user(login: \"AshoneA\") {\n    ...User_profile\n    id\n  }\n}\n\nfragment User_profile on User {\n  avatarUrl\n  createdAt\n  bio\n  name\n  login\n  location\n  repositories(last: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n  starredRepositories(last: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n  watching(last: 10) {\n    totalCount\n    nodes {\n      ...ProjectProfile_repository\n      id\n    }\n  }\n}\n\nfragment ProjectProfile_repository on Repository {\n  name\n  description\n  url\n  id\n  updatedAt\n  owner {\n    __typename\n    login\n    id\n  }\n  primaryLanguage {\n    id\n    name\n    color\n  }\n  stargazers(first: 10) {\n    totalCount\n  }\n  forks(first: 10) {\n    totalCount\n  }\n}\n"
 };
 
 module.exports = batch;

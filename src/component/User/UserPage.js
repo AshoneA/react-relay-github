@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs } from 'antd';
+import { Spin } from 'antd';
 import {
   QueryRenderer,
   graphql
@@ -7,7 +7,6 @@ import {
 import environment from '../../relay/Environment'
 import User from './User';
 
-const { TabPane } = Tabs;
 const UserPageQuery = graphql`
 query UserPageQuery{
   user(login:"AshoneA"){
@@ -29,7 +28,9 @@ class UserPage extends Component {
               <User profile={props.user} />
             )
           }
-          return <div>Loading</div>
+          return <div
+            style={{ display: 'flex', justifyContent: 'center' }}
+          ><Spin /></div>
         }}
       />
     );

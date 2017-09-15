@@ -4,6 +4,7 @@ import {
   graphql
 } from 'react-relay';
 import moment from 'moment';
+import { Link } from 'react-router';
 import { Icon, Row, Col } from 'antd';
 
 class ProjectProfile extends Component {
@@ -12,10 +13,12 @@ class ProjectProfile extends Component {
     return (
       <div className="project-profile">
         <div className="title">
-          <a href={repository.url} style={{
-            fontSize: 20,
-            lineHeight: '26px'
-          }}>{repository.name}</a>
+          <Link to={`/commit/${repository.owner.login}/${repository.name}`}
+            title="show commit history"
+            style={{
+              fontSize: 20,
+              lineHeight: '26px'
+            }}>{repository.name}</Link>
           <p style={{ fontSize: 14, margin: '4px 0 6px 0' }}>{repository.description}</p>
           <Row style={{ margin: '8px 0' }}>
             <Col span={2}><Icon type="star" />{repository.stargazers.totalCount}</Col>
@@ -44,6 +47,9 @@ export default createFragmentContainer(ProjectProfile, graphql`
     description
     id
     updatedAt
+    owner{
+      login
+    }
     primaryLanguage {
       id
       name

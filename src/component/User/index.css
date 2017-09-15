@@ -8,6 +8,7 @@
 
 .user .profile .user-info {
     width: 160px;
+    height: 280px;
     text-align: center;
     font-size: 16px;
     border: 1px solid rgba(99, 97, 97, 0.08);
@@ -22,6 +23,7 @@
     width: 100%;
     border-radius: 20px;
 }
+
 .project-profile {
     height: 100px;
 }

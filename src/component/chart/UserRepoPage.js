@@ -5,6 +5,7 @@ import {
 } from 'react-relay';
 import environment from '../../relay/Environment'
 import UserRepo from './UserRepo';
+import Loading from '../Loading';
 
 const UserRepoPageQuery = graphql`
   query UserRepoPageQuery(
@@ -33,7 +34,7 @@ class UserRepoPage extends Component {
               <UserRepo repo={props.user} />
             )
           }
-          return <div>Loading</div>
+          return <Loading />
         }}
       />
     )

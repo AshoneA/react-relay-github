@@ -53,7 +53,6 @@ class Chart extends Component {
   }
 
   onChartClick = (e) => {
-    console.log(e)
     if (this.level === 1) {
       this.level = 2;
       let starredRep = [];

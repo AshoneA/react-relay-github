@@ -1,9 +1,9 @@
 export default function PRBar(data) {
-  const yAxisData = data.map(({ name }) => name);
+  const xAxisData = data.map(({ name }) => name);
   return {
     title: {
-      text: 'pull request',
-      subtext: '数据来自网络'
+      text: 'the repo pull request number',
+      subtext: 'last 50'
     },
     tooltip: {
       trigger: 'axis',
@@ -31,7 +31,7 @@ export default function PRBar(data) {
     },
     xAxis: {
       type: 'category',
-      data: yAxisData,
+      data: xAxisData,
     },
     yAxis: {
       type: 'value',

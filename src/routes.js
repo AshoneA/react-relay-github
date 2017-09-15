@@ -13,7 +13,7 @@ const routes = {
   path: '/',
   component: App,
   childRoutes: [
-    { path: 'commit', component: CommitListPage },
+    { path: 'commit/:owner/:name', component: CommitListPage },
     { path: 'user', component: UserPage },
     { path: 'issues', component: IssueListPage },
     { path: 'issues/:number', component: IssueDetailPage },

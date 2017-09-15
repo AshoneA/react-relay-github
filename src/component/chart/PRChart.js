@@ -4,7 +4,6 @@ import {
   graphql
 } from 'react-relay';
 import ReactEcharts from 'echarts-for-react';
-import { browserHistory } from 'react-router';
 import PRBar from './utils/PRBar';
 import UserRepoPage from './UserRepoPage';
 
@@ -22,7 +21,7 @@ class PRChart extends Component {
 
   setPROption = () => {
     const data = {};
-    this.props.PR.pullRequests.edges.map(({ node }) => {
+    this.props.PR.pullRequests.edges.forEach(({ node }) => {
       const { login } = node.author;
       data[login] = data[login] ? data[login] + 1 : 1;
     })

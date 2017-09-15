@@ -5,6 +5,7 @@ import {
 } from 'react-relay';
 import environment from '../../relay/Environment'
 import Chart from './Chart';
+import Loading from '../Loading';
 
 const ChartPageQuery = graphql`
   query ChartPageQuery($name: String!){
@@ -31,7 +32,7 @@ class ChartPage extends Component {
               <Chart stars={props.user} />
             )
           }
-          return <div>Loading</div>
+          return <Loading />
         }}
       />
     )

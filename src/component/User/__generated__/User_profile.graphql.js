@@ -85,7 +85,7 @@ const fragment /*: ConcreteFragment*/ = {
       "args": [
         {
           "kind": "Literal",
-          "name": "first",
+          "name": "last",
           "value": 10,
           "type": "Int"
         }
@@ -118,7 +118,7 @@ const fragment /*: ConcreteFragment*/ = {
           "storageKey": null
         }
       ],
-      "storageKey": "repositories{\"first\":10}"
+      "storageKey": "repositories{\"last\":10}"
     },
     {
       "kind": "LinkedField",
@@ -126,7 +126,7 @@ const fragment /*: ConcreteFragment*/ = {
       "args": [
         {
           "kind": "Literal",
-          "name": "first",
+          "name": "last",
           "value": 10,
           "type": "Int"
         }
@@ -159,7 +159,7 @@ const fragment /*: ConcreteFragment*/ = {
           "storageKey": null
         }
       ],
-      "storageKey": "starredRepositories{\"first\":10}"
+      "storageKey": "starredRepositories{\"last\":10}"
     },
     {
       "kind": "LinkedField",
@@ -167,7 +167,7 @@ const fragment /*: ConcreteFragment*/ = {
       "args": [
         {
           "kind": "Literal",
-          "name": "first",
+          "name": "last",
           "value": 10,
           "type": "Int"
         }
@@ -200,7 +200,7 @@ const fragment /*: ConcreteFragment*/ = {
           "storageKey": null
         }
       ],
-      "storageKey": "watching{\"first\":10}"
+      "storageKey": "watching{\"last\":10}"
     }
   ],
   "type": "User"

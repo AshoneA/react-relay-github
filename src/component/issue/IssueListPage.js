@@ -3,6 +3,7 @@ import {
   QueryRenderer,
   graphql
 } from 'react-relay';
+import Loading from '../Loading';
 import environment from '../../relay/Environment';
 import IssueList from './IssueList';
 
@@ -37,7 +38,7 @@ class IssueListPage extends Component {
           } else if (props) {
             return <IssueList issues={props.repository} name={this.state.name} />
           }
-          return <div>loading</div>
+          return <Loading />
         }}
       />
     )

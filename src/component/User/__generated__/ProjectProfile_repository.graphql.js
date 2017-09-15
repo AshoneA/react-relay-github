@@ -14,6 +14,9 @@ export type ProjectProfile_repository = {|
   +url: any;
   +id: string;
   +updatedAt: any;
+  +owner: {|
+    +login: string;
+  |};
   +primaryLanguage: ?{|
     +id: string;
     +name: string;
@@ -68,6 +71,24 @@ const fragment /*: ConcreteFragment*/ = {
       "alias": null,
       "args": null,
       "name": "updatedAt",
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": null,
+      "name": "owner",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "login",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {

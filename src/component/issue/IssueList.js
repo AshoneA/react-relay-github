@@ -24,13 +24,11 @@ class IssueList extends Component {
       10, // Fetch the next 10 feed items
       e => {
         this.setState({ isloading: false, text: 'load more' });
-        console.log(e);
       },
     );
   }
   render() {
     const { issues } = this.props;
-    console.log(issues)
     return (
       <div>
         {
@@ -76,7 +74,6 @@ export default createPaginationContainer(IssueList,
       }
     `,
     getVariables(props, { count, cursor }, fragmentVariables) {
-      console.log(arguments)
       return {
         count,
         after: cursor,

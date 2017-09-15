@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1171cb8d67768008838309e800fa2d41
+ * @relayHash afee7309673e071bcb45637a835774e5
  */
 
 /* eslint-disable */
@@ -24,8 +24,9 @@ query CommitListPageQuery(
   $count: Int!
   $after: String
   $name: String!
+  $owner: String!
 ) {
-  repository(owner: "facebook", name: $name) {
+  repository(owner: $owner, name: $name) {
     ref(qualifiedName: "master") {
       target {
         __typename
@@ -72,6 +73,7 @@ fragment Commit_commit on Commit {
   messageBody
   messageBodyHTML
   messageHeadline
+  commitUrl
   id
   author {
     avatarUrl
@@ -106,6 +108,12 @@ const batch /*: ConcreteBatch*/ = {
         "name": "name",
         "type": "String!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "owner",
+        "type": "String!",
+        "defaultValue": null
       }
     ],
     "kind": "Fragment",
@@ -123,9 +131,9 @@ const batch /*: ConcreteBatch*/ = {
             "type": "String!"
           },
           {
-            "kind": "Literal",
+            "kind": "Variable",
             "name": "owner",
-            "value": "facebook",
+            "variableName": "owner",
             "type": "String!"
           }
         ],
@@ -196,6 +204,12 @@ const batch /*: ConcreteBatch*/ = {
         "name": "name",
         "type": "String!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "owner",
+        "type": "String!",
+        "defaultValue": null
       }
     ],
     "kind": "Root",
@@ -213,9 +227,9 @@ const batch /*: ConcreteBatch*/ = {
             "type": "String!"
           },
           {
-            "kind": "Literal",
+            "kind": "Variable",
             "name": "owner",
-            "value": "facebook",
+            "variableName": "owner",
             "type": "String!"
           }
         ],
@@ -334,6 +348,13 @@ const batch /*: ConcreteBatch*/ = {
                                     "alias": null,
                                     "args": null,
                                     "name": "messageHeadline",
+                                    "storageKey": null
+                                  },
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "args": null,
+                                    "name": "commitUrl",
                                     "storageKey": null
                                   },
                                   {
@@ -532,7 +553,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query CommitListPageQuery(\n  $count: Int!\n  $after: String\n  $name: String!\n) {\n  repository(owner: \"facebook\", name: $name) {\n    ref(qualifiedName: \"master\") {\n      target {\n        __typename\n        ...CommitList_commits\n        id\n      }\n      id\n    }\n    id\n  }\n}\n\nfragment CommitList_commits on Commit {\n  history(first: $count, after: $after) {\n    edges {\n      node {\n        ...Commit_commit\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    ... on CommitHistoryConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment Commit_commit on Commit {\n  committedDate\n  message\n  messageBody\n  messageBodyHTML\n  messageHeadline\n  id\n  author {\n    avatarUrl\n    date\n    name\n    email\n    user {\n      url\n      id\n    }\n  }\n}\n"
+  "text": "query CommitListPageQuery(\n  $count: Int!\n  $after: String\n  $name: String!\n  $owner: String!\n) {\n  repository(owner: $owner, name: $name) {\n    ref(qualifiedName: \"master\") {\n      target {\n        __typename\n        ...CommitList_commits\n        id\n      }\n      id\n    }\n    id\n  }\n}\n\nfragment CommitList_commits on Commit {\n  history(first: $count, after: $after) {\n    edges {\n      node {\n        ...Commit_commit\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n    ... on CommitHistoryConnection {\n      edges {\n        cursor\n        node {\n          __typename\n          id\n        }\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment Commit_commit on Commit {\n  committedDate\n  message\n  messageBody\n  messageBodyHTML\n  messageHeadline\n  commitUrl\n  id\n  author {\n    avatarUrl\n    date\n    name\n    email\n    user {\n      url\n      id\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

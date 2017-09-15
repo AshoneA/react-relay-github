@@ -32,7 +32,8 @@ class IssueComment extends Component {
             <Popconfirm title="Are you sure delete this comment?"
               onConfirm={() => this._remove(comment.databaseId)}>
               <Button
-                type="danger" size="small" style={{ float: 'right' }}>
+                type="danger" size="small"
+                style={{ float: 'right', position: 'absolute', right: 50 }}>
                 <Icon type="close" />
               </Button>
             </Popconfirm>

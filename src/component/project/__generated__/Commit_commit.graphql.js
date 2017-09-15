@@ -14,6 +14,7 @@ export type Commit_commit = {|
   +messageBody: string;
   +messageBodyHTML: any;
   +messageHeadline: string;
+  +commitUrl: any;
   +id: string;
   +author: ?{|
     +avatarUrl: any;
@@ -67,6 +68,13 @@ const fragment /*: ConcreteFragment*/ = {
       "alias": null,
       "args": null,
       "name": "messageHeadline",
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "commitUrl",
       "storageKey": null
     },
     {

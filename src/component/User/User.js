@@ -14,7 +14,6 @@ class User extends Component {
       avatarUrl, name, login, bio, location,
       repositories, starredRepositories, watching
      } = this.props.profile;
-    console.log(this.props.profile)
     return (
       <div className="user">
         <div className="profile">
@@ -65,19 +64,19 @@ export default createFragmentContainer(User, graphql`
     name
     login
     location
-    repositories(first: 10) {
+    repositories(last: 10) {
       totalCount
       nodes{
         ...ProjectProfile_repository
       }
     }
-    starredRepositories(first:10){
+    starredRepositories(last:10){
       totalCount
       nodes{
         ...ProjectProfile_repository
       }  
     }
-    watching(first:10) {
+    watching(last:10) {
       totalCount
       nodes{
         ...ProjectProfile_repository

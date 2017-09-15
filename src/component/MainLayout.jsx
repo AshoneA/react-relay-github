@@ -32,7 +32,7 @@ class MainLayout extends Component {
               <Icon type="user" />
               <span>profile</span>
             </Menu.Item>
-            <Menu.Item key="/commit">
+            <Menu.Item key="/commit/facebook/react">
               <Icon type="video-camera" />
               <span>commit history</span>
             </Menu.Item>
