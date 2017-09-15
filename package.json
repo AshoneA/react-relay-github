@@ -101,5 +101,6 @@
     "babel-plugin-import": "^1.4.0",
     "babel-plugin-relay": "^1.3.0",
     "relay-compiler": "^1.3.0"
-  }
+  },
+  "homepage": "http://AshoneA.githubo.io/react-relay-github/build/"
 }
