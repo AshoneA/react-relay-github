@@ -12,6 +12,9 @@ import Chart, {
 const routes = {
   path: '/',
   component: App,
+  indexRoute: {
+    component: UserPage
+  },
   childRoutes: [
     { path: 'commit/:owner/:name', component: CommitListPage },
     { path: 'user', component: UserPage },
