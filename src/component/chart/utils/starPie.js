@@ -3,7 +3,7 @@ export default function starPie(data) {
   return {
     title: {
       text: 'starred repositories primary language',
-      subtext: 'first 100',
+      subtext: 'first 50',
       x: 'center'
     },
     grid: {

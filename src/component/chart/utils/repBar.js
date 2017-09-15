@@ -2,8 +2,7 @@ export default function repBar(data) {
   const yAxisData = data.map(({ name }) => name);
   return {
     title: {
-      text: '仓库数量排行',
-      subtext: '数据来自网络'
+      text: 'repository star number',
     },
     tooltip: {
       trigger: 'axis',

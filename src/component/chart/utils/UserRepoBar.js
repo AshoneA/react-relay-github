@@ -2,8 +2,8 @@ export default function UserRepoBar(data) {
   const legendData = data.map(({ name }) => name);
   return {
     title: {
-      text: 'starred repositories primary language',
-      subtext: 'first 100',
+      text: 'repository primary language',
+      subtext: 'first 50',
       x: 'center'
     },
     grid: {
